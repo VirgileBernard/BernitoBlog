@@ -1,0 +1,63 @@
+import { createRouter, createWebHistory } from 'vue-router'
+import LoginView from '@/views/auth/LoginView.vue'
+import HomePageView from '@/views/HomePageView.vue'
+import SettingsView from '@/views/SettingsView.vue'
+import CreateQuoteView from '@/views/CreateQuoteView.vue'
+
+const router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes: [
+    {
+      path: '/',
+      children: [
+        {
+          // Page "Home" affichant les projets en cours, accessible après authentification
+          path: '',
+          name: 'home',
+          component: HomePageView,
+          meta: {
+            requiresAuth: true,
+          },
+        },
+        {
+          // Page de paramètres, accessible uniquement aux utilisateurs authentifiés
+          path: 'settings',
+          name: 'settings',
+          component: SettingsView,
+          meta: {
+            requiresAuth: true,
+          },
+        },
+      ],
+    },
+    {
+      // Route de connexion
+      path: '/login',
+      name: 'login',
+      component: LoginView,
+      meta: {
+        requiresAuth: false,
+      },
+    },
+    {
+      // Route du stepper
+      path: '/create_quote',
+      name: 'create_quote',
+      component: CreateQuoteView,
+      meta: {
+        requiresAuth: true,
+      },
+    },
+  ],
+})
+
+router.beforeEach((to, from, next) => {
+  const isAuthenticated = localStorage.getItem('isAuthenticated')
+  if (to.meta.requiresAuth && !isAuthenticated) {
+    next('/login')
+  } else {
+    next()
+  }
+})
+
+export default router
