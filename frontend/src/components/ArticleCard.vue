@@ -130,7 +130,7 @@ button {
   position: absolute;
   bottom: 20%;
   /* Place le tooltip au-dessus */
-  left: 10%;
+  left: 100px;
   transform: translateX(-50%);
   /* Centre horizontalement */
   z-index: 10;
