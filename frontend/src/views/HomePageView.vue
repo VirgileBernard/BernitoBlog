@@ -40,9 +40,9 @@ import { ref } from 'vue'
 import { FwbModal, FwbButton } from 'flowbite-vue'
 
 import Searchbar from '@/components/Searchbar.vue'
-import Navbar from '@/components/Navbar.vue'
-import Newpost from '@/components/Newpost.vue'
-import ArticleCard from "@/components/ArticleCard.vue";
+import Navbar from '../components/Navbar.vue'
+import Newpost from '../components/Newpost.vue'
+import ArticleCard from "../components/ArticleCard.vue";
 
 
 

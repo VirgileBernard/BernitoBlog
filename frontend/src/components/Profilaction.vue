@@ -68,7 +68,7 @@ button {
 }
 
 svg {
-  color: black;
+  color: var(--TextWhite);
 }
 
 .btnLogout {

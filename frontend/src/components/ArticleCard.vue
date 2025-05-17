@@ -15,7 +15,7 @@
       <p class="articleText">{{ article.content }}</p>
 
       <!-- Infos de l'auteur -->
-      <div class="authorInfo">
+      <div class="authorInfo" @mouseover="showProfile = true" @mouseleave="showProfile = false">
         <img src="../assets/img/pp.jpg" alt="photo_de_profil" class="profilPic">
         <div>
           <p class="authorName">{{ article.author }}</p>
@@ -23,31 +23,39 @@
         </div>
       </div>
 
-      <!-- Actions -->
-      <div class="actionBtns">
-        <button @click="liked = !liked" :class="{ liked: liked }">❤️ {{ liked ? "J'aime" : "Like" }}</button>
-        <button @click="showComments = !showComments">
-          💬 {{ showComments ? "Masquer" : "Commenter" }}
-        </button>
-      </div>
+      <!-- Affichage conditionnel de Profilperso -->
+      <Profilperso v-if="showProfile" :user="article.user" class="profileTooltip" />
+    </div>
 
-      <!-- Zone de commentaires : affichée seulement si showComments === true -->
-      <div v-if="showComments" class="commentSection">
-        <form>
-          <textarea id="message" rows="4" placeholder="Écrire un commentaire..."
-            class="block w-full p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-gray-500 focus:border-gray-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" />
-        </form>
-      </div>
+    <!-- Actions -->
+    <div class="actionBtns">
+      <button @click="liked = !liked" :class="{ liked: liked }">❤️ {{ liked ? "J'aime" : "Like" }}</button>
+      <button @click="showComments = !showComments">
+        💬 {{ showComments ? "Masquer" : "Commenter" }}
+      </button>
+    </div>
+
+    <!-- Zone de commentaires : affichée seulement si showComments === true -->
+    <div v-if="showComments" class="commentSection">
+      <form>
+        <textarea id="message" rows="4" placeholder="Écrire un commentaire..."
+          class="block w-full p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-gray-500 focus:border-gray-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" />
+      </form>
     </div>
   </div>
+
 </template>
 
 <script setup>
 import { ref } from "vue";
+import Profilperso from "@/components/Profilperso.vue";
+
 defineProps({ article: Object });
 
 const liked = ref(false);
 const showComments = ref(false);
+
+const showProfile = ref(false);
 </script>
 
 <style scoped>
@@ -111,5 +119,27 @@ button {
 .liked {
   color: red;
   font-weight: bold;
+}
+
+.authorInfo {
+  position: relative;
+  cursor: pointer;
+}
+
+.profileTooltip {
+  position: absolute;
+  bottom: 20%;
+  /* Place le tooltip au-dessus */
+  left: 10%;
+  transform: translateX(-50%);
+  /* Centre horizontalement */
+  z-index: 10;
+  background: var(--BlueNavy);
+  color: var(--TextWhite);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 </style>

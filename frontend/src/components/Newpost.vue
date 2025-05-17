@@ -88,13 +88,13 @@ const content = ref("");
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.3);
   max-width: 80%;
+  padding: 2rem;
 }
 
 .postHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 1vh 0;
   font-weight: medium;
 }
 
@@ -148,17 +148,16 @@ textarea {
   margin-right: 1rem;
   font-size: 1.4rem;
   /* Grossir un peu les icônes */
-  color: var(--Icone);
+  color: var(--GreyInput);
   /* Couleur de base */
   transition: color 0.3s ease, transform 0.3s ease;
   /* Animation fluide */
 }
 
 .editorIcon:hover {
-  color: var(--IconeHover);
-  /* Autre gris au survol */
+  color: var(--TextWhite);
   transform: scale(1.12);
-  /* Effet léger d'agrandissement */
+
 }
 
 

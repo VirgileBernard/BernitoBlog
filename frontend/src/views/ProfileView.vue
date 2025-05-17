@@ -30,7 +30,8 @@ import Profilaction from '../components/Profilaction.vue';
 .profileDisplay {
   width: 80vw;
   margin: 0 auto;
-  background-color: var(--WhiteGlass);
+  background-color: var(--BlueNavy);
+  color: var(--TextWhite);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 12px;

@@ -47,7 +47,7 @@
 
 <script setup>
 import { ref } from "vue";
-import NewPost from "@/components/NewPost.vue";
+import NewPost from "../components/NewPost.vue";
 
 const showNewPost = ref(false);
 </script>

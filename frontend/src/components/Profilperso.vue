@@ -9,7 +9,7 @@
       </div>
 
       <div class="rightProfile">
-        <h2 class="name">{{ user.fullName }}</h2>
+        <h2 class="name">{{ user.profile?.firstName }} {{ user.profile?.lastName }}</h2>
         <h3 class="job">{{ user.profile?.job }} </h3>
       </div>
 
@@ -125,17 +125,17 @@ const user = useUserStore()
   display: flex;
   max-width: 50%;
   margin: 0 auto;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 svg {
-  color: var(--Icone);
+  color: var(--TextWhite);
   transition: all .3s ease;
 }
 
 svg:hover {
-  scale: 135%;
-  color: var(--IconeHover);
+  scale: 150%;
+  /* color: var(--GreyInput); */
 }
 
 @media (max-width: 700px) {
@@ -155,16 +155,47 @@ svg:hover {
 }
 
 
-/* Media query pour écrans > 700px */
-@media (min-width: 700px) {
+@media (min-width: 200px) {
+  .profileContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
+  .topProfile {
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%;
+    padding: 1rem;
+  }
+
+  .leftProfile,
+  .rightProfile {
+    width: 100%;
+    text-align: center;
+    margin-top: 1vh;
+  }
 
   .rightProfile .name {
-    font-size: 22px;
+    font-size: 18px;
   }
 
   .rightProfile .job {
     font-size: 20px;
   }
+
+  .biographie {
+    max-width: 80%;
+    text-align: center;
+    margin: 10px 0;
+  }
+
+  .socialmedia {
+    display: flex;
+    gap: 8px;
+    color: var(--BlueNavy);
+    padding: 1rem;
+  }
+
 }
 </style>
