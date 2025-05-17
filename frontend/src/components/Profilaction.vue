@@ -19,6 +19,9 @@
       </svg>
     </button>
 
+
+    <button @click="logout" class="btnLogout">Se déconnecter</button>
+
   </div>
 </template>
 
@@ -34,7 +37,16 @@ export default {
     },
     showComments() {
       // Code to display user's comments
+    },
+    logout() {
+      // Suppression du token et du refresh token
+      localStorage.removeItem('token');
+      localStorage.removeItem('refreshToken');
+
+      // Redirection vers la page de login
+      window.location.href = '/login';
     }
+
   }
 }
 </script>
@@ -44,7 +56,7 @@ export default {
   display: flex;
   flex-direction: column;
   max-width: 60%;
-  margin: 0 auto 2vh;
+  margin: 0 auto 5vh;
   align-items: center;
   gap: 2vh;
 }
@@ -52,9 +64,24 @@ export default {
 button {
   /* background: red; */
   display: flex;
+  cursor: pointer;
 }
 
 svg {
   color: black;
+}
+
+.btnLogout {
+  padding: 10px 20px;
+  border: none;
+  background: red;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.btnLogout:hover {
+  background: darkred;
 }
 </style>

@@ -9,14 +9,14 @@
       </div>
 
       <div class="rightProfile">
-        <h2 class="name">Virgile Bernard</h2>
-        <h3 class="job">CEO BernitoCorporation</h3>
+        <h2 class="name">{{ user.fullName }}</h2>
+        <h3 class="job">{{ user.profile?.job }} </h3>
       </div>
 
     </div>
 
     <div class="biographie">
-      <p>L'expérience c'est la somme de toutes les erreurs</p>
+      <p>{{ user.profile?.bio }}</p>
     </div>
 
     <div class="socialmedia">
@@ -69,12 +69,16 @@
 </template>
 
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useUserStore } from '@/stores/user';
+
+const user = useUserStore()
+
+</script>
 
 
 <style scoped>
 .profileContainer {
-  /* max-width: 70vw; */
   margin: 0 auto;
   padding: 1rem;
 }
@@ -83,7 +87,7 @@
 .topProfile {
   display: flex;
   max-width: 50%;
-  margin: 3vh auto;
+  margin: 2vh auto;
 }
 
 #profilpic {
@@ -125,11 +129,42 @@
 }
 
 svg {
-  color: black;
+  color: var(--Icone);
   transition: all .3s ease;
 }
 
 svg:hover {
-  scale: 125%;
+  scale: 135%;
+  color: var(--IconeHover);
+}
+
+@media (max-width: 700px) {
+  .topProfile {
+    width: 100%;
+    display: block;
+  }
+
+  #profilpic {
+    margin: 0 auto;
+  }
+
+  .leftProfile,
+  .rightProfile {
+    margin: 0 auto;
+  }
+}
+
+
+/* Media query pour écrans > 700px */
+@media (min-width: 700px) {
+
+
+  .rightProfile .name {
+    font-size: 22px;
+  }
+
+  .rightProfile .job {
+    font-size: 20px;
+  }
 }
 </style>

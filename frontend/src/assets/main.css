@@ -1,11 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;1,14..32,400&display=swap');
 @import "tailwindcss";
 @import "flowbite/src/themes/default";
+
 @plugin "flowbite/plugin";
 @source "../node_modules/flowbite";
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,209;1,14..32,209&display=swap');
+
 
 :root {
   --Inter: "Inter", sans-serif;
+  --Background : rgba(194, 194, 194, 0.999) ;
+  --Icone: rgb(10, 0, 75);
+  --IconeHover : rgb(86, 61, 245);
+
+  --WhiteGlass : rgba(255, 255, 255, 0.566) ;
+
+
   --RacingGreen: #263D19;
   --MangoYellow: #d69e2e;
   --TextWhite: #F5F5F5;
@@ -19,4 +28,8 @@
 
 * {
   font-family: var(--Inter);
+}
+
+body{
+  background-color: var(--Background);
 }
