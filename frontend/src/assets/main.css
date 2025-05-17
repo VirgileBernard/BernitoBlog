@@ -9,10 +9,12 @@
 :root {
   --Inter: "Inter", sans-serif;
   --Background : rgba(194, 194, 194, 0.999) ;
-  --Icone: rgb(10, 0, 75);
-  --IconeHover : rgb(86, 61, 245);
+  --Icone: #082544;
+  --IconeHover :#5a8bb1 ;
 
   --WhiteGlass : rgba(255, 255, 255, 0.566) ;
+
+  --BlueNavy : #374151;
 
 
   --RacingGreen: #263D19;

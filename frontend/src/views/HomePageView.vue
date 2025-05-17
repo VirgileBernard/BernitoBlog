@@ -36,7 +36,7 @@
 
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { FwbModal, FwbButton } from 'flowbite-vue'
 
 import Searchbar from '@/components/Searchbar.vue'

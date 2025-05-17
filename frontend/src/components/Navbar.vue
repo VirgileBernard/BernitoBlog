@@ -4,7 +4,7 @@
     class="fixed bottom-0 z-50 w-full -translate-x-1/2 bg-white border-t border-gray-200 left-1/2 dark:bg-gray-700 dark:border-gray-600">
     <div class="grid h-full max-w-lg grid-cols-3 mx-auto">
       <!-- Home -->
-      <router-link to="/" role="button" data-tooltip-target="tooltip-home"
+      <router-link to="/" role="button"
         class="inline-flex flex-col items-center justify-center p-4 hover:bg-gray-50 dark:hover:bg-gray-800 group">
         <svg
           class="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
@@ -15,9 +15,8 @@
         <span class="sr-only">Home</span>
       </router-link>
 
-
       <!-- New post -->
-      <button @click="$emit('open-newpost')" data-tooltip-target="tooltip-newpost" type="button"
+      <button @click="showNewPost = true" type="button"
         class="inline-flex flex-col items-center justify-center p-4 hover:bg-gray-50 dark:hover:bg-gray-800 group">
         <svg
           class="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
@@ -28,10 +27,9 @@
         <span class="sr-only">New post</span>
       </button>
 
-
       <!-- Profil -->
-      <router-link to="/profile" role="button" data-tooltip-target="tooltip-profile" class="inline-flex flex-col items-center justify-center p-4 hover:bg-gray-50 dark:hover:bg-gray-800 group
-        border-0"> <!-- border-0 pour rester visuellement identique -->
+      <router-link to="/profile" role="button"
+        class="inline-flex flex-col items-center justify-center p-4 hover:bg-gray-50 dark:hover:bg-gray-800 group">
         <svg
           class="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
           xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
@@ -40,16 +38,16 @@
         </svg>
         <span class="sr-only">Profil</span>
       </router-link>
-
-
-
-
     </div>
   </div>
+
+  <!-- Affichage dynamique du composant NewPost -->
+  <NewPost v-if="showNewPost" @close="showNewPost = false" />
 </template>
 
-<script setup lang="ts">
-defineEmits<{
-  (e: 'open-newpost'): void
-}>()
+<script setup>
+import { ref } from "vue";
+import NewPost from "@/components/NewPost.vue";
+
+const showNewPost = ref(false);
 </script>

@@ -7,7 +7,7 @@ const demoProfile: UserProfile = {
   firstName: 'Virgile',
   lastName: 'Bernard',
   job: 'CEO BernitoCorporation',
-  bio: "L'expérience c'est la somme de toutes les erreurs",
+  bio: " L'expérience c'est la somme de toutes les erreurs",
   avatar: new URL('@/assets/img/pp.jpg', import.meta.url).href,
   role: 'AUTHOR',
   socials: {
