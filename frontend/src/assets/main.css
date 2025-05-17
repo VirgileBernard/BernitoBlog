@@ -2,15 +2,21 @@
 @import "flowbite/src/themes/default";
 @plugin "flowbite/plugin";
 @source "../node_modules/flowbite";
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,209;1,14..32,209&display=swap');
 
 :root {
-    --RacingGreen: #263D19;
-    --MangoYellow: #d69e2e;
-    --TextWhite: #F5F5F5;
-    --TextBlack: #272727;
-    --GreyInput: #BEBEBE;
-    --GreenValidate: #00FF08;
-    --OrangeWaiting: #FF6A00;
-    --RedRejected: #E80004;
-    --OrangeEdit: #FF723E
+  --Inter: "Inter", sans-serif;
+  --RacingGreen: #263D19;
+  --MangoYellow: #d69e2e;
+  --TextWhite: #F5F5F5;
+  --TextBlack: #272727;
+  --GreyInput: #BEBEBE;
+  --GreenValidate: #00FF08;
+  --OrangeWaiting: #FF6A00;
+  --RedRejected: #E80004;
+  --OrangeEdit: #FF723E;
+}
+
+* {
+  font-family: var(--Inter);
 }
