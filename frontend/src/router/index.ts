@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LoginView from '@/views/auth/LoginView.vue'
 import HomePageView from '@/views/HomePageView.vue'
-import SettingsView from '@/views/SettingsView.vue'
+import ProfileView from '@/views/ProfileView.vue'
 import CreateQuoteView from '@/views/CreateQuoteView.vue'
 
 const router = createRouter({
@@ -20,10 +20,10 @@ const router = createRouter({
           },
         },
         {
-          // Page de paramètres, accessible uniquement aux utilisateurs authentifiés
-          path: 'settings',
-          name: 'settings',
-          component: SettingsView,
+          // Page de profil, accessible uniquement aux utilisateurs authentifiés
+          path: 'profile',
+          name: 'profile',
+          component: ProfileView,
           meta: {
             requiresAuth: true,
           },
