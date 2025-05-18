@@ -8,7 +8,9 @@
 
     <!-- Barre de navigation fixe en bas -->
     <Navbar />
+
   </div>
+  <Footer />
 
 </template>
 
@@ -18,17 +20,18 @@
 import Profilperso from '@/components/Profilperso.vue'
 import Navbar from '@/components/Navbar.vue';
 import Profilaction from '../components/Profilaction.vue';
+import Footer from '@/components/Footer.vue';
 
 </script>
 
 
 <style scoped>
 .content {
-  margin-top: 15vh;
+  margin-top: 5vh;
+  margin-bottom: 10vh;
 }
 
 .profileDisplay {
-  width: 80vw;
   margin: 0 auto;
   background-color: var(--BlueNavy);
   color: var(--TextWhite);

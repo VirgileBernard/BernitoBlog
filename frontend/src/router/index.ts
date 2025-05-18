@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import LoginView from '@/views/auth/LoginView.vue'
 import HomePageView from '@/views/HomePageView.vue'
 import ProfileView from '@/views/ProfileView.vue'
-import CreateQuoteView from '@/views/CreateQuoteView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -37,15 +36,6 @@ const router = createRouter({
       component: LoginView,
       meta: {
         requiresAuth: false,
-      },
-    },
-    {
-      // Route du stepper
-      path: '/create_quote',
-      name: 'create_quote',
-      component: CreateQuoteView,
-      meta: {
-        requiresAuth: true,
       },
     },
   ],

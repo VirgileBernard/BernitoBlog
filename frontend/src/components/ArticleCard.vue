@@ -14,18 +14,22 @@
       <h2 class="articleTitle">{{ article.title }}</h2>
       <p class="articleText">{{ article.content }}</p>
 
-      <!-- Infos de l'auteur -->
-      <div class="authorInfo" @mouseover="showProfile = true" @mouseleave="showProfile = false">
-        <img src="../assets/img/pp.jpg" alt="photo_de_profil" class="profilPic">
-        <div>
-          <p class="authorName">{{ article.author }}</p>
-          <p class="authorJob">{{ article.job }}</p>
+      <!-- Infos de l'auteur + Tooltip -->
+      <div class="authorContainer" @mouseover="showProfile = true" @mouseleave="showProfile = false">
+        <!-- Infos de l'auteur -->
+        <div class="authorInfo">
+          <img src="../assets/img/pp.jpg" alt="photo_de_profil" class="profilPic">
+          <div>
+            <p class="authorName">{{ article.author }}</p>
+            <p class="authorJob">{{ article.job }}</p>
+          </div>
         </div>
-      </div>
 
-      <!-- Affichage conditionnel de Profilperso -->
-      <Profilperso v-if="showProfile" :user="article.user" class="profileTooltip" />
+        <!-- Affichage conditionnel de Profilperso -->
+        <Profilperso v-if="showProfile" :user="article.user" class="profileTooltip" />
+      </div>
     </div>
+
 
     <!-- Actions -->
     <div class="actionBtns">

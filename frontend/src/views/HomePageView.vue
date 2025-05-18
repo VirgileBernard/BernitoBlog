@@ -31,6 +31,9 @@
     </template>
 
   </fwb-modal>
+
+  <Footer />
+
 </template>
 
 
@@ -43,6 +46,7 @@ import Searchbar from '@/components/Searchbar.vue'
 import Navbar from '../components/Navbar.vue'
 import Newpost from '../components/Newpost.vue'
 import ArticleCard from "../components/ArticleCard.vue";
+import Footer from '@/components/Footer.vue'
 
 
 
