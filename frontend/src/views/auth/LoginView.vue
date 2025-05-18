@@ -4,13 +4,14 @@
 
     <div
       class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
-      <form class="space-y-6" action="#">
+      <form class="space-y-6" action="" method="post" @submit="handleSubmit">
         <h5 class="text-xl font-medium text-gray-900 dark:text-white">Sign in to our platform</h5>
         <div>
           <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-          <input type="email" name="email" id="email"
+          <input type="text" name="email" id="email"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-            placeholder="name@company.com" required />
+            placeholder="Nom d'utilisateur ou email" required />
+
         </div>
         <div>
           <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
@@ -43,6 +44,12 @@
 </template>
 
 <script setup lang="ts">
+
+const handleSubmit = (event: Event) => {
+  event.preventDefault(); // Empêche l'envoi du formulaire par défaut
+  window.location.href = "/"; // Redirige vers la page d'accueil
+};
+
 
 
 

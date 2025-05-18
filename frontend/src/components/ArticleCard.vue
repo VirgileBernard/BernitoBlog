@@ -16,7 +16,6 @@
 
       <!-- Infos de l'auteur + Tooltip -->
       <div class="authorContainer" @mouseover="showProfile = true" @mouseleave="showProfile = false">
-        <!-- Infos de l'auteur -->
         <div class="authorInfo">
           <img src="../assets/img/pp.jpg" alt="photo_de_profil" class="profilPic">
           <div>
@@ -25,11 +24,10 @@
           </div>
         </div>
 
-        <!-- Affichage conditionnel de Profilperso -->
+        <!-- Affichage conditionnel du profil perso -->
         <Profilperso v-if="showProfile" :user="article.user" class="profileTooltip" />
       </div>
     </div>
-
 
     <!-- Actions -->
     <div class="actionBtns">
@@ -39,15 +37,23 @@
       </button>
     </div>
 
-    <!-- Zone de commentaires : affichée seulement si showComments === true -->
+    <!-- Zone de commentaires -->
     <div v-if="showComments" class="commentSection">
-      <form>
-        <textarea id="message" rows="4" placeholder="Écrire un commentaire..."
-          class="block w-full p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-gray-500 focus:border-gray-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" />
+      <form @submit.prevent="postComment">
+        <textarea v-model="newComment" rows="4" placeholder="Écrire un commentaire..."
+          class="block w-full p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+        <button type="submit" class="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Publier</button>
       </form>
     </div>
-  </div>
 
+    <!-- Affichage des commentaires postés -->
+    <div v-if="comments.length > 0" class="postedComments">
+      <div v-for="(comment, index) in comments" :key="index" class="commentItem">
+        <p>{{ comment.text }}</p>
+        <button @click="likeComment(index)" class="likeBtn">❤️ {{ comment.likes }}</button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup>
@@ -58,8 +64,21 @@ defineProps({ article: Object });
 
 const liked = ref(false);
 const showComments = ref(false);
-
 const showProfile = ref(false);
+
+const newComment = ref("");
+const comments = ref([]);
+
+const postComment = () => {
+  if (newComment.value.trim() !== "") {
+    comments.value.push({ text: newComment.value, likes: 0 });
+    newComment.value = "";
+  }
+};
+
+const likeComment = (index) => {
+  comments.value[index].likes++;
+};
 </script>
 
 <style scoped>
@@ -70,7 +89,6 @@ const showProfile = ref(false);
   margin-bottom: 1rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
 
 .articleContent {
   display: flex;
@@ -91,8 +109,6 @@ const showProfile = ref(false);
   background-color: #ccc;
   border-radius: 8px;
 }
-
-
 
 .authorInfo {
   display: flex;
@@ -125,18 +141,26 @@ button {
   font-weight: bold;
 }
 
-.authorInfo {
-  position: relative;
+.commentItem {
+  padding: 0.5rem;
+  background: #f4f4f4;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.likeBtn {
+  background: transparent;
+  border: none;
+  color: red;
   cursor: pointer;
+  margin-top: 5px;
 }
 
 .profileTooltip {
   position: absolute;
   bottom: 20%;
-  /* Place le tooltip au-dessus */
   left: 100px;
   transform: translateX(-50%);
-  /* Centre horizontalement */
   z-index: 10;
   background: var(--BlueNavy);
   color: var(--TextWhite);
