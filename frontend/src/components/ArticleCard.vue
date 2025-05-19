@@ -101,6 +101,10 @@ const likeComment = (index) => {
   text-align: left;
 }
 
+.authorContainer {
+  max-width: max-content;
+}
+
 .placeholderImage {
   display: flex;
   justify-content: center;
