@@ -1,0 +1,53 @@
+version: '3.3'
+services:
+  mongodb-sharded:
+    container_name: mongodb-sharded
+    image: docker.io/bitnami/mongodb-sharded:latest
+    platform: linux/amd64
+    environment:
+      - MONGODB_ADVERTISED_HOSTNAME=mongodb-sharded
+      - MONGODB_SHARDING_MODE=mongos
+      - MONGODB_CFG_PRIMARY_HOST=mongodb-cfg
+      - MONGODB_CFG_REPLICA_SET_NAME=cfgreplicaset
+      - MONGODB_REPLICA_SET_KEY=replicasetkey123
+      - MONGODB_ROOT_PASSWORD=${MONGODB_ROOT_PASSWORD}
+      - EXPERIMENTAL_DOCKER_DESKTOP_FORCE_QEMU=1
+    ports:
+      - 27017:27017
+    volumes:
+      - shard_data:/bitnami
+    restart: unless-stopped
+  mongodb-shard0:
+    container_name: mongodb-shard0
+    image: docker.io/bitnami/mongodb-sharded:latest
+    platform: linux/amd64
+    environment:
+      - MONGODB_ADVERTISED_HOSTNAME=mongodb-shard0
+      - MONGODB_SHARDING_MODE=shardsvr
+      - MONGODB_MONGOS_HOST=mongodb-sharded
+      - MONGODB_ROOT_PASSWORD=${MONGODB_ROOT_PASSWORD}
+      - MONGODB_REPLICA_SET_MODE=primary
+      - MONGODB_REPLICA_SET_KEY=replicasetkey123
+      - MONGODB_REPLICA_SET_NAME=shard0
+      - EXPERIMENTAL_DOCKER_DESKTOP_FORCE_QEMU=1
+    volumes:
+      - shard0_data:/bitnami
+    restart: unless-stopped
+  mongodb-cfg:
+    container_name: mongodb-cfg
+    image: docker.io/bitnami/mongodb-sharded:latest
+    environment:
+      - MONGODB_ADVERTISED_HOSTNAME=mongodb-cfg
+      - MONGODB_SHARDING_MODE=configsvr
+      - MONGODB_ROOT_PASSWORD=${MONGODB_ROOT_PASSWORD}
+      - MONGODB_REPLICA_SET_MODE=primary
+      - MONGODB_REPLICA_SET_KEY=replicasetkey123
+      - MONGODB_REPLICA_SET_NAME=cfgreplicaset
+      - EXPERIMENTAL_DOCKER_DESKTOP_FORCE_QEMU=1
+    volumes:
+      - cfg_data:/bitnami
+    restart: unless-stopped
+volumes:
+  shard_data:
+  shard0_data:
+  cfg_data:
